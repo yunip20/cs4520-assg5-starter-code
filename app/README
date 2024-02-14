@@ -1,0 +1,9 @@
+CS 4520 Mobile APP Development Assignmnet 2
+github repo: https://github.com/yunip20/CS4520
+
+This app uses RecyclerView to create a product list. There are two
+fragments within this app: Login Fragment and Product List Fragment.
+Once the user logs in with the "admin" username and password, they are
+able to see the product list.
+
+This app requires using API v34.

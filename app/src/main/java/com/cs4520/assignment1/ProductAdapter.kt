@@ -11,11 +11,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 // Create the basic adapter extending from RecyclerView.Adapter
 // Note that we specify the custom ViewHolder which gives us access to our views
-class ProductAdapter(private val mProduct: List<Product>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
+class ProductAdapter(private val mProduct: List<ProductItem.Product>) : RecyclerView.Adapter<ProductAdapter.ViewHolder>() {
     // Store a member variable for the contacts
 
     // Provide a direct reference to each of the views within a data item
-    // Used to cache the views within the item layout for fast access
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         // Your holder should contain and initialize a member variable
         // for any view that will be set as you render a row
@@ -30,14 +29,14 @@ class ProductAdapter(private val mProduct: List<Product>) : RecyclerView.Adapter
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         // Inflate the custom layout
-        val productView = inflater.inflate(R.layout.fragment_item, parent, false)
+        val productView = inflater.inflate(R.layout.fragment_product_list, parent, false)
         // Return a new holder instance
         return ViewHolder(productView)
     }
 
     override fun onBindViewHolder(viewHolder: ProductAdapter.ViewHolder, position: Int) {
         // Get the data model based on position
-        val product: Product = mProduct[position]
+        val product: ProductItem.Product = mProduct[position]
 
         // Set background color and image based on product type
         if (product.type == "Equipment") {
@@ -49,13 +48,13 @@ class ProductAdapter(private val mProduct: List<Product>) : RecyclerView.Adapter
         }
         // Set item views based on your views and data model
         viewHolder.productName.text = product.name
-        if (product.expiryDate !== null) {
-            viewHolder.expiryDate.visibility = View.VISIBLE
-            viewHolder.expiryDate.text = product.expiryDate
-        } else {
-            viewHolder.expiryDate.visibility = View.GONE
+        if (product.expiryDate === "") {
+            val params = viewHolder.productPrice.layoutParams as ConstraintLayout.LayoutParams
+            params.topToBottom = R.id.tvItemName
+
         }
-        viewHolder.productPrice.text = product.price
+        viewHolder.expiryDate.text = product.expiryDate
+        viewHolder.productPrice.text = "$" + product.price
     }
     // Returns the total count of items in the list
     override fun getItemCount(): Int {

@@ -26,7 +26,7 @@ class ProductListFragment : Fragment() {
     private var param1: String? = null
     private var param2: String? = null
     private val productList = productsDataset.map {
-        Product(it[0] as String, it[2] as String?, "$${it[3]}", it[1] as String)
+        ProductItem.Product(it[0] as String, it[2] as String?, "$${it[3]}", it[1] as String)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,18 +36,13 @@ class ProductListFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_product_list, container, false)
-        val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
-
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = ProductAdapter(productList)
-        return view
-    }
+//    override fun onCreateView(
+//        inflater: LayoutInflater, container: ViewGroup?,
+//        savedInstanceState: Bundle?
+//    ): View? {
+//        // Inflate the layout for this fragment
+//      return inflater.inflate(R.layout.fragment_product_list, container, false)
+//    }
 
     companion object {
         /**

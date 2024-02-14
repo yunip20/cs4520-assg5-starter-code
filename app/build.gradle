@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace 'com.cs4520.assignment1'
-    compileSdk 33
+    compileSdk 34
 
     defaultConfig {
         applicationId "com.cs4520.assignment1"
@@ -50,5 +50,8 @@ dependencies {
     implementation 'androidx.navigation:navigation-fragment-ktx:2.5.2'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
     implementation 'androidx.navigation:navigation-ui-ktx:2.7.7'
+    implementation 'androidx.test:monitor:1.6.1'
+    implementation 'androidx.test.ext:junit-ktx:1.1.5'
     testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'junit:junit:4.12'
 }

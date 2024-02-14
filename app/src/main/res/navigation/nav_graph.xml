@@ -17,6 +17,6 @@
 
     <fragment
         android:id="@+id/plf"
-        android:name="com.cs4520.assignment1.RecyclerFragment"
+        android:name="com.cs4520.assignment1.ProductListFragment"
         android:label="ProductListFragment"/>
 </navigation>

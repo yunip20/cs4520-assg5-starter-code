@@ -1,6 +1,5 @@
 package com.cs4520.assignment1
 
-import android.app.PendingIntent.getActivity
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.NavController
@@ -9,7 +8,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.cs4520.assignment1.databinding.ActivityMainBinding
-import androidx.fragment.app.Fragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -36,6 +34,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    override fun onBackPressed() {
+        // Use the NavController to handle back navigation
+        if (!navController.navigateUp()) {
+            // If navigateUp() returns false, there are no more destinations in the back stack
+            super.onBackPressed()
+        }
     }
 
 }

@@ -5,9 +5,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageView
-import android.widget.TextView
-import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
@@ -25,8 +22,16 @@ class ProductListFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
-    private val productList = productsDataset.map {
-        ProductItem.Product(it[0] as String, it[2] as String?, "$${it[3]}", it[1] as String)
+    private fun convertDataSet(dataset: List<List<Any?>>) : List<ProductItem.Product> {
+        val result = dataset.map { item ->
+            val name = item.get(0)?.toString() ?: ""
+            val type = item.get(1)?.toString() ?: ""
+            val expiryDate = item.get(2)?.toString() ?: ""
+            val price = item.get(3)?.toString() ?: ""
+
+            ProductItem.Product(name, expiryDate, price, type)
+        }
+        return result
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,13 +41,22 @@ class ProductListFragment : Fragment() {
         }
     }
 
-//    override fun onCreateView(
-//        inflater: LayoutInflater, container: ViewGroup?,
-//        savedInstanceState: Bundle?
-//    ): View? {
-//        // Inflate the layout for this fragment
-//      return inflater.inflate(R.layout.fragment_product_list, container, false)
-//    }
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+
+        val recyclerViewLayout = layoutInflater.inflate(R.layout.fragment_recycler, container, false)
+        val recyclerView: RecyclerView = recyclerViewLayout.findViewById(R.id.rvProducts)
+
+        val adapter = ProductAdapter(convertDataSet(productsDataset))
+        recyclerView.adapter = adapter
+
+        val layoutManager = LinearLayoutManager(requireContext())
+        recyclerView.layoutManager = layoutManager
+        // Inflate the layout for this fragment
+        return recyclerViewLayout
+    }
 
     companion object {
         /**
@@ -51,7 +65,7 @@ class ProductListFragment : Fragment() {
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
-         * @return A new instance of fragment ProductListFragment.
+         * @return A new instance of fragment recyclerFragment.
          */
         // TODO: Rename and change types and number of parameters
         @JvmStatic

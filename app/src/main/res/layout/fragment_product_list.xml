@@ -4,8 +4,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".ProductListFragment"
-    android:id="@+id/productListFragment">
+    tools:context=".ProductAdapter"
+    android:id="@+id/productAdapter">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"

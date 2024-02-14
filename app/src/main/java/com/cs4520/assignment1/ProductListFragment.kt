@@ -43,60 +43,10 @@ class ProductListFragment : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_product_list, container, false)
         val recyclerView: RecyclerView = view.findViewById(R.id.recyclerView)
+
         recyclerView.layoutManager = LinearLayoutManager(requireContext())
         recyclerView.adapter = ProductAdapter(productList)
         return view
-    }
-
-    private class ProductViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-//      val constraintLayout: ConstraintLayout = itemView.findViewById(R.id.constraintLayout)
-        val productName: TextView = itemView.findViewById(R.id.tvProductName)
-        val expiryDate: TextView = itemView.findViewById(R.id.tvExpiryDate)
-        val productPrice: TextView = itemView.findViewById(R.id.tvProductPrice)
-        val productType: TextView = itemView.findViewById(R.id.tvProductType)
-        val productImage: ImageView = itemView.findViewById(R.id.ivProductImage)
-    }
-
-    private class ProductAdapter(private val productList: List<Product>) :
-        RecyclerView.Adapter<ProductViewHolder>() {
-
-        override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductViewHolder {
-            val view = LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_product_list, parent, false)
-            return ProductViewHolder(view)
-        }
-
-        override fun onBindViewHolder(holder: ProductViewHolder, position: Int) {
-            val product = productList[position]
-
-            holder.productName.text = product.name
-            holder.expiryDate.text = product.expiryDate
-            holder.productPrice.text = product.price
-            holder.productType.text = product.type
-
-            // Set background color and image based on product type
-            if (product.type == "Equipment") {
-                holder.constraintLayout.setBackgroundColor(
-                    holder.itemView.setBackgroundColor(R.color.light_red)
-                )
-                holder.productImage.setImageResource(R.drawable.ic_equipment)
-            } else if (product.type == "Food") {
-                holder.constraintLayout.setBackgroundColor(
-                    holder.itemView.setBackgroundColor(R.color.light_yellow)
-                )
-                holder.productImage.setImageResource(R.drawable.ic_food)
-            }
-
-            // Set text color for all text views
-            holder.productName.setTextColor(R.color.black)
-            holder.expiryDate.setTextColor
-            holder.productPrice.setTextColor
-            holder.productType.setTextColor
-        }
-
-        override fun getItemCount(): Int {
-            return productList.size
-        }
     }
 
     companion object {

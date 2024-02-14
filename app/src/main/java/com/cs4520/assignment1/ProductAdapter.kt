@@ -29,7 +29,7 @@ class ProductAdapter(private val mProduct: List<ProductItem.Product>) : Recycler
         val context = parent.context
         val inflater = LayoutInflater.from(context)
         // Inflate the custom layout
-        val productView = inflater.inflate(R.layout.fragment_product_list, parent, false)
+        val productView = inflater.inflate(R.layout.fragment_product_adapter, parent, false)
         // Return a new holder instance
         return ViewHolder(productView)
     }

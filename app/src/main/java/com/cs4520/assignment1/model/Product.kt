@@ -1,7 +1,7 @@
-package com.cs4520.assignment1
+package com.cs4520.assignment1.model
 
 sealed class ProductItem {
-    data class Product(
+    class Product(
         val name: String,
         val expiryDate: String?,
         val price: String,
@@ -9,3 +9,4 @@ sealed class ProductItem {
     ) : ProductItem()
 
 }
+

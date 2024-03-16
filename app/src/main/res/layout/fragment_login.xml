@@ -1,44 +1,46 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/fragment_container"
-    tools:context=".LoginFragment">
-
-    <LinearLayout
-        android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/fragment_container" >
+    <EditText
+        android:id="@+id/etUsername"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         android:layout_gravity="center"
-        >
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:textSize="20sp"
+        android:autofillHints="name"
+        android:hint="@string/username_placeholder"/>
 
-        <EditText
-            android:id="@+id/etUsername"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName"
-            android:textSize="20sp"
-            android:autofillHints="name"
-            android:hint="@string/username_placeholder"/>
+    <EditText
+        android:id="@+id/etPassword"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etUsername"
+        android:layout_gravity="center"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textSize="20sp"
+        android:autofillHints="password"
+        android:hint="@string/password_placeholder"/>
 
-        <EditText
-            android:id="@+id/etPassword"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPassword"
-            android:textSize="20sp"
-            android:autofillHints="password"
-            android:hint="@string/password_placeholder"/>
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/etPassword"
+        android:layout_gravity="center"
+        android:text="@string/btn_login"
+        />
 
-        <Button
-            android:id="@+id/btnLogin"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/btn_login"
-            />
-    </LinearLayout>
-</FrameLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

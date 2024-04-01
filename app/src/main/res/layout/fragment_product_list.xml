@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.cs4520.assignment1.view.ProductListFragment">
+    tools:context="com.cs4520.assignment1.ui.ProductListFragment">
 
 
     <TextView

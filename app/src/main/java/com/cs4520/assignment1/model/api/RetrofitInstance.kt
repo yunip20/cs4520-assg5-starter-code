@@ -1,4 +1,4 @@
-package com.cs4520.assignment1.model
+package com.cs4520.assignment1.model.api
 
 import com.cs4520.assignment4.Api
 import retrofit2.Retrofit

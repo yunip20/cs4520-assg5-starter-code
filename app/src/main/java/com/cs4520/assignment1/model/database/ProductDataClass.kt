@@ -1,4 +1,4 @@
-package com.cs4520.assignment1.model
+package com.cs4520.assignment1.model.database
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

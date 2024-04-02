@@ -1,5 +1,6 @@
 package com.cs4520.assignment1.model
 
+import android.util.Log
 import androidx.work.WorkManager
 import com.cs4520.assignment1.model.api.ProductApiService
 import com.cs4520.assignment1.model.api.RetrofitInstance
@@ -24,6 +25,7 @@ class ProductRepository(val dao: ProductDao) {
             }
         } catch (ex: Exception) {
             val fromDatabase = dao.getAllProducts()
+            Log.d("offline", fromDatabase.toString())
             return fromDatabase
         }
     }

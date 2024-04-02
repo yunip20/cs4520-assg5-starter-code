@@ -9,23 +9,26 @@ import androidx.work.WorkerParameters
 import com.cs4520.assignment1.model.ProductRepository
 import com.cs4520.assignment1.model.api.RetrofitInstance.apiService
 import com.cs4520.assignment1.model.database.ProductDatabase
+import java.time.LocalDateTime
+import java.util.Calendar
 
 class UpdateProductListWorker(context: Context, params: WorkerParameters):
     CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result  {
         return try {
-            Log.d("Data Update", "Updating Data")
+            val currentTime = Calendar.getInstance().time
+            Log.d("doWork", "Timestamp: $currentTime")
             val dao = ProductDatabase.getInstance().productDao()
             val repo = ProductRepository(dao)
             try {
                 val products = repo.getProducts()
                 return if (products.isEmpty()) {
-                        Result.success()
-                    } else {
-                        dao.insertAll(products)
-                        Result.success()
-                    }
+                    Result.success()
+                } else {
+                    dao.insertAll(products)
+                    Result.success()
+                }
             } catch (e: Exception) {
                 Log.e("API error", e.message!!)
                 Result.failure()
@@ -35,4 +38,5 @@ class UpdateProductListWorker(context: Context, params: WorkerParameters):
             Result.failure()
         }
     }
+
 }

@@ -83,18 +83,18 @@ class ProductListViewModel() : ViewModel() {
 //    }
 
     // Method to fetch products
-    fun updateProducts() {
-        _isLoading.value = true
-        viewModelScope.launch {
-            try {
-                repo.getProducts().also { _products.value = it } // Update products LiveData
-            } catch (e: Exception) {
-                _errorMessage.value = e.message
-            } finally {
-                _isLoading.value = false
-            }
-        }
-    }
+//    fun updateProducts() {
+//        _isLoading.value = true
+//        viewModelScope.launch {
+//            try {
+//                repo.getProducts().also { _products.value = it } // Update products LiveData
+//            } catch (e: Exception) {
+//                _errorMessage.value = e.message
+//            } finally {
+//                _isLoading.value = false
+//            }
+//        }
+//    }
     private fun schedulePeriodicWork(wm: WorkManager) {
         val constraints = Constraints.Builder()
             .setRequiredNetworkType(NetworkType.CONNECTED)
@@ -102,8 +102,8 @@ class ProductListViewModel() : ViewModel() {
 
         val periodicWorkRequest = PeriodicWorkRequestBuilder<UpdateProductListWorker>(
             repeatInterval = 1, // Repeat every hour
-            repeatIntervalTimeUnit = TimeUnit.HOURS
-        ).setInitialDelay(30, TimeUnit.HOURS).setConstraints(constraints).build()
+            repeatIntervalTimeUnit = TimeUnit.HOURS,
+        ).setInitialDelay(1, TimeUnit.HOURS).setConstraints(constraints).build()
 
         runCatching {
             wm.enqueueUniquePeriodicWork(

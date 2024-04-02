@@ -79,7 +79,7 @@ fun ProductList(
 ) {
     if (pl.isEmpty()) {
         Text(
-            text="No Products",
+            text="No Products Available",
             textAlign = TextAlign.Center,
             modifier = Modifier.wrapContentSize()
         )
